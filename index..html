@@ -23,9 +23,13 @@
             <div class="hero__actions">
                 <a href="#library" class="btn btn--primary">View My Books</a>
             </div>
+            <a href="YOUR_GITHUB_REPO_URL" class="github-link" target="_blank" rel="noopener noreferrer">
+                <img src="github-outline-fill.svg" alt="" class="github-link__icon">
+                <span>View on GitHub</span>
+            </a>
         </div>
         <div>
-            <img class="hero-img" src="behold.png" alt="Illustration of a cozy library corner with bookshelves and a comfy chair." class="hero__image" />
+            <img class="hero-img hero__image" src="behold.png" alt="Purple beholder painted by a talented artist" />
         </div>
     </section>
 
@@ -36,53 +40,44 @@
         </div>
 
         <div class="library-actions">
-            <a href="#" class="btn btn--primary">Add Book</a>
-            <a href="#" class="btn btn--primary">Add Book</a>
+            <button id="btn1" class="btn btn--primary">Add Book</button>
+            <button id="btn2" class="btn btn--primary">Clean Library</button>
         </div>
 
-        <div class="current-grid">
-            <article class="current-card">
-                <h3>The Secret History</h3>
-                <p><strong>Author:</strong> Donna Tartt</p>
-                <p><strong>Genre:</strong> Literary Fiction</p>
-                <p><strong>Status:</strong> Finished</p>
-            </article>
+        <div class="current-grid" id="card-grid-section">
 
-            <article class="current-card">
-                <h3>Norwegian Wood</h3>
-                <p><strong>Author:</strong> Haruki Murakami</p>
-                <p><strong>Genre:</strong> Contemporary Fiction</p>
-                <p><strong>Status:</strong> Reading</p>
-            </article>
-
-            <article class="current-card">
-                <h3>Dune</h3>
-                <p><strong>Author:</strong> Frank Herbert</p>
-                <p><strong>Genre:</strong> Science Fiction</p>
-                <p><strong>Status:</strong> To Read</p>
-            </article>
-                        <article class="current-card">
-                <h3>The Secret History</h3>
-                <p><strong>Author:</strong> Donna Tartt</p>
-                <p><strong>Genre:</strong> Literary Fiction</p>
-                <p><strong>Status:</strong> Finished</p>
-            </article>
-
-            <article class="current-card">
-                <h3>Norwegian Wood</h3>
-                <p><strong>Author:</strong> Haruki Murakami</p>
-                <p><strong>Genre:</strong> Contemporary Fiction</p>
-                <p><strong>Status:</strong> Reading</p>
-            </article>
-
-            <article class="current-card">
-                <h3>Dune</h3>
-                <p><strong>Author:</strong> Frank Herbert</p>
-                <p><strong>Genre:</strong> Science Fiction</p>
-                <p><strong>Status:</strong> To Read</p>
-            </article>
         </div>
     </section>
+    <dialog id="book-dialog" class="book-dialog">
+        <form id="book-form" class="book-form">
+            <h3>Add a New Book</h3>
+
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Book title">
+
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" placeholder="Author name">
+
+            <label for="genre">Genre</label>
+            <input type="text" id="genre" name="genre" placeholder="Genre">
+
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" name="pages" placeholder="Pages" min="0">
+
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="To Read">To Read</option>
+                <option value="Reading">Reading</option>
+                <option value="Finished">Finished</option>
+            </select>
+
+            <div class="dialog-actions">
+                <button type="submit" class="btn btn--primary">Save Book</button>
+                <button type="button" id="close-dialog" class="btn btn--primary">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+    <script src="script.js"></script>
 </body>
 
 </html>
