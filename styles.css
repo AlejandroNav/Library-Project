@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@400;700&display=swap');
 
+/* =========================================================
+   DESIGN TOKENS
+   Only non-color reusable values live here.
+   Colors are written directly as rgb/rgba in the rules.
+   ========================================================= */
 :root {
-    --bg-main: rgb(240, 208, 240);
-    --bg-section: rgb(240, 230, 240);
-    --accent: rgb(75, 31, 77);
-    --text-main: rgb(56, 31, 56);
-    --text-soft: rgb(97, 56, 97);
-
     --border: 3px solid #000;
     --shadow-sm: 3px 3px 0 0 #000;
     --shadow: 5px 5px 0 0 #000;
@@ -14,6 +13,10 @@
     --radius: 0;
 }
 
+/* =========================================================
+   RESET / BASE
+   Basic cleanup so elements behave consistently.
+   ========================================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,8 +25,8 @@
 
 body {
     font-family: "Tienne", serif;
-    color: var(--text-main);
-    background: var(--bg-main);
+    color: rgb(56, 31, 56);
+    background: rgb(240, 208, 240);
     line-height: 1.5;
 }
 
@@ -32,32 +35,42 @@ a {
     color: inherit;
 }
 
+/* Shared heading/display font for the more decorative UI parts */
 .hero h1,
 .section-heading h2,
 .current-card h3,
-.btn {
+.btn,
+.book-form h3,
+.github-link {
     font-family: "Averia Sans Libre", sans-serif;
 }
 
+/* =========================================================
+   HERO SECTION
+   Top landing section with intro text, image, and actions.
+   ========================================================= */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
     padding: 2rem 7vw;
     text-align: center;
-    background: var(--bg-main);
+    background: rgb(240, 208, 240);
 }
 
 .hero__content {
     max-width: 700px;
 }
 
+/* Small label above the main title */
 .eyebrow {
     display: inline-block;
     margin-bottom: 1rem;
     padding: 0.45rem 0.9rem;
-    color: var(--accent);
+    color: rgb(75, 31, 77);
+    background: rgb(240, 230, 240);
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -67,15 +80,10 @@ a {
     box-shadow: var(--shadow-sm);
 }
 
-.hero-img {
-    width: clamp(200px, 40vw, 500px);
-    height: auto;
-}
-
 .hero h1 {
     font-size: clamp(2.8rem, 6vw, 5rem);
     line-height: 1;
-    color: var(--accent);
+    color: rgb(75, 31, 77);
     margin-bottom: 1rem;
 }
 
@@ -83,175 +91,264 @@ a {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     max-width: 58ch;
     margin: 0 auto 1.8rem;
-    color: var(--text-soft);
+    color: rgb(97, 56, 97);
 }
 
+/* Container for hero buttons/links */
 .hero__actions {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
+/* Hero image stays flexible and scales nicely */
+.hero-img {
+    width: clamp(200px, 40vw, 500px);
+    height: auto;
+    display: block;
+}
+
+/* =========================================================
+   BUTTONS
+   Main reusable button style used across the page.
+   ========================================================= */
 .btn {
     display: inline-block;
     padding: 0.95rem 1.6rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
     font-weight: 700;
-    background: var(--accent);
-    color: var(--bg-main);
+    cursor: pointer;
+
+    background: rgb(75, 31, 77);
+    color: rgb(240, 208, 240);
+
     border: var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Slight lift effect to match the bold paper-cutout style */
 .btn:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-lg);
 }
 
+/* =========================================================
+   GITHUB LINK
+   Styled to feel like part of the same button system,
+   but visually distinct from the primary CTA.
+   ========================================================= */
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.95rem 1.3rem;
+    font-weight: 700;
+
+    color: rgb(56, 31, 56);
+    background: rgb(240, 230, 240);
+
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.github-link:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.github-link__icon {
+    width: 1.85rem;
+    height: 1.8rem;
+    display: block;
+    object-fit: contain;
+}
+
+/* =========================================================
+   LIBRARY SECTION
+   Section that contains the heading, action buttons,
+   and the books grid.
+   ========================================================= */
 .current-section {
     padding: 5rem 7vw 6rem;
-    background: var(--bg-section);
+    background: rgb(240, 230, 240);
     border-top: var(--border);
 }
 
 .section-heading {
-    margin-bottom: 1.5rem;
     max-width: 700px;
+    margin-bottom: 1.5rem;
 }
 
 .section-heading h2 {
     font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--accent);
+    color: rgb(75, 31, 77);
     margin-bottom: 0.6rem;
 }
 
 .section-heading p {
-    color: var(--text-soft);
+    color: rgb(97, 56, 97);
 }
 
+/* Buttons under the section title */
 .library-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
 }
 
+/* Responsive book card grid */
 .current-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
 }
 
+/* =========================================================
+   BOOK CARDS
+   Individual book panels rendered by JavaScript.
+   ========================================================= */
 .current-card {
-    background: var(--bg-main);
+    position: relative;
     padding: 1.5rem;
+
+    background: rgb(240, 208, 240);
     border: var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    position: relative;
 }
 
+/* Extra right padding leaves room for the close button */
 .current-card h3 {
-    color: var(--accent);
+    color: rgb(75, 31, 77);
     margin-bottom: 0.9rem;
+    padding-right: 2rem;
 }
 
 .current-card p {
     margin-bottom: 0.5rem;
-    color: var(--text-soft);
+    color: rgb(97, 56, 97);
 }
 
 .current-card strong {
-    color: var(--text-main);
+    color: rgb(56, 31, 56);
 }
 
+/* Close button is absolutely positioned inside the card corner */
 .card-close {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
+
     border: none;
     background: transparent;
+    color: rgb(56, 31, 56);
+
     font-size: 1.8rem;
     line-height: 1;
     cursor: pointer;
-    padding: 0rem .3rem;
+    padding: 0rem 0.3rem;
 }
 
-@media (max-width: 900px) {
-    .current-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-    }
-}
-
-
-/*---------------- Form dialog----------------------- */
+/* =========================================================
+   DIALOG / MODAL
+   Popup form for adding a new book.
+   ========================================================= */
 .book-dialog {
+    width: min(90vw, 420px);
+    max-width: 420px;
+    padding: 0;
+
+    color: rgb(56, 31, 56);
+    background: rgba(240, 230, 240, 0.82);
+
     border: var(--border);
     box-shadow: var(--shadow-lg);
-    background: rgba(240, 230, 240, 0.82);
+
+    /* Glass effect on the dialog itself */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 0;
-    max-width: 420px;
-    width: min(90vw, 420px);
-    color: var(--text-main);
 }
 
-
+/* Center the dialog in the viewport when open */
 .book-dialog[open] {
     position: fixed;
     inset: 0;
     margin: auto;
 }
 
+/* Darkened/blurry overlay behind the dialog */
 .book-dialog::backdrop {
     background: rgba(40, 20, 40, 0.28);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
 
+/* =========================================================
+   FORM INSIDE DIALOG
+   Layout and field styling for the modal form.
+   ========================================================= */
 .book-form {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     padding: 1.5rem;
+    background-color: rgb(253, 231, 249);
 }
 
 .book-form h3 {
-    font-family: "Averia Sans Libre", sans-serif;
-    color: var(--accent);
+    color: rgb(92, 44, 94);
     margin-bottom: 0.5rem;
+    font-size: 2rem;
 }
 
 .book-form label {
     font-weight: 700;
-    color: var(--text-main);
+    color: rgb(56, 31, 56);
 }
 
 .book-form input,
 .book-form select {
     font: inherit;
     padding: 0.75rem 0.9rem;
-    border: var(--border);
-    background: var(--bg-main);
-    color: var(--text-main);
     outline: none;
+
+    color: rgb(56, 31, 56);
+    background: rgb(230, 192, 230);
+
+    border: var(--border);
 }
 
+.book-form input::placeholder {
+    color: rgb(70, 34, 70);
+}
+
+/* Buttons row inside the modal */
 .dialog-actions {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
 }
 
+/* Remove extra bottom spacing from buttons inside the dialog row */
 .dialog-actions .btn {
-    margin-right: 0;
-    cursor: pointer;
+    margin-bottom: 0;
 }
 
+/* =========================================================
+   RESPONSIVE: TABLET AND BELOW
+   Stack hero layout and reduce grid columns.
+   ========================================================= */
 @media (max-width: 900px) {
     .hero {
         flex-direction: column;
@@ -272,6 +369,11 @@ a {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================================
+   RESPONSIVE: MOBILE
+   Make actions/buttons stack vertically and tighten spacing.
+   ========================================================= */
 @media (max-width: 600px) {
     .hero h1 {
         line-height: 1.1;
@@ -283,47 +385,25 @@ a {
         padding-right: 1.25rem;
     }
 
+    .hero__actions,
     .library-actions,
-    .dialog-actions,
-    .hero__actions {
+    .dialog-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .btn {
+    .btn,
+    .github-link {
         width: 100%;
-        margin-right: 0;
         text-align: center;
+        justify-content: center;
     }
 
     .book-form {
         padding: 1rem;
     }
-}
 
-.github-link {
-    margin-left: -.7rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.95rem 1.3rem;
-    font-family: "Averia Sans Libre", sans-serif;
-    font-weight: 700;
-    color: var(--border);
-    background: var(--bg-section);
-    border: var(--border);
-    box-shadow: var(--shadow);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.github-link:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.github-link__icon {
-    width: 1.35rem;
-    height: 1.35rem;
-    display: block;
-    object-fit: contain;
+    .book-dialog {
+        width: min(92vw, 420px);
+    }
 }
