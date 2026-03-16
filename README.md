@@ -5,6 +5,9 @@ A personal library web app inspired by Goodreads, but with a lighter and simpler
 ## Overview
 
 This project is a small front-end library application built with **HTML**, **CSS**, and **JavaScript**. It lets users view a collection of books, add new books through a dialog form, and remove books from the library dynamically.
+
+Live Demo: [Link](https://alejandronav.github.io/Library-Project/)
+
 ## Screenshots
 
 ### Hero Section
