@@ -9,15 +9,15 @@ This project is a small front-end library application built with **HTML**, **CSS
 
 ### Hero Section
 
-![Hero Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/main/assets/images/screen1.png)
+![Hero Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/screen1.png)
 
 ### Library Section
 
-![Library Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/main/assets/images/screen2.png)
+![Library Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/screen2.png)
 
 ### Add Book Dialog
 
-![Add Book Dialog](https://raw.githubusercontent.com/AlejandroNav/Library-Project/main/assets/images/screen3.png)
+![Add Book Dialog](https://raw.githubusercontent.com/AlejandroNav/Library-Project/main/screen3.png)
 The goal of the project was to practice working with:
 
 - JavaScript objects and constructors
