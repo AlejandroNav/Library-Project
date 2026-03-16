@@ -9,11 +9,11 @@ This project is a small front-end library application built with **HTML**, **CSS
 
 ### Hero Section
 
-![Hero Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/screen1.png)
+![Hero Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/main/screen1.png)
 
 ### Library Section
 
-![Library Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/screen2.png)
+![Library Section](https://raw.githubusercontent.com/AlejandroNav/Library-Project/main/screen2.png)
 
 ### Add Book Dialog
 
