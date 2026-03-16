@@ -6,50 +6,7 @@ const dialog = document.getElementById('book-dialog');
 const bookForm = document.getElementById('book-form');
 const closeDialogBtn = document.getElementById('close-dialog');
 
-const myLibrary = [
-    {
-        id: crypto.randomUUID(),
-        title: 'Dune',
-        author: 'Frank Herbert',
-        genre: 'Science Fiction',
-        status: 'Finished'
-    },
-    {
-        id: crypto.randomUUID(),
-        title: 'The Lord of the Rings',
-        author: 'J.R.R. Tolkien',
-        genre: 'Fantasy',
-        status: 'Reading'
-    },
-    {
-        id: crypto.randomUUID(),
-        title: 'Mistborn',
-        author: 'Brandon Sanderson',
-        genre: 'Fantasy',
-        status: 'To Read'
-    },
-    {
-        id: crypto.randomUUID(),
-        title: 'The Road',
-        author: 'Cormac McCarthy',
-        genre: 'Post-Apocalyptic Fiction',
-        status: 'Finished'
-    },
-    {
-        id: crypto.randomUUID(),
-        title: 'The Little Prince',
-        author: 'Antoine de Saint-Exupery',
-        genre: 'Fable',
-        status: 'Finished'
-    },
-    {
-        id: crypto.randomUUID(),
-        title: 'Hyperion',
-        author: 'Dan Simmons',
-        genre: 'Science Fiction',
-        status: 'To Read'
-    }
-];
+const myLibrary = [];
 
 function Book(title, author, genre, pages, status) {
     this.id = crypto.randomUUID();
@@ -60,6 +17,16 @@ function Book(title, author, genre, pages, status) {
     this.status = status?.trim() || "To Read";
 }
 
+Book.prototype.toggleStatus = function () {
+    if (this.status === "To Read") {
+        this.status = "Reading";
+    } else if (this.status === "Reading") {
+        this.status = "Finished";
+    } else {
+        this.status = "To Read";
+    }
+};
+
 function addBookToLibrary(title, author, genre, pages, status) {
     const newBook = new Book(title, author, genre, pages, status);
     myLibrary.push(newBook);
@@ -69,15 +36,19 @@ function displayBooks() {
     container.innerHTML = '';
 
     myLibrary.forEach(function (book) {
-        const newCard = document.createElement("article");
-        newCard.classList.add("current-card");
+        const newCard = document.createElement('article');
+        newCard.classList.add('current-card');
 
         newCard.innerHTML = `
             <button class="card-close" aria-label="Close card" data-id="${book.id}">&times;</button>
             <h3>${book.title}</h3>
             <p><strong>Author:</strong> ${book.author}</p>
             <p><strong>Genre:</strong> ${book.genre}</p>
+            <p><strong>Pages:</strong> ${book.pages}</p>
             <p><strong>Status:</strong> ${book.status}</p>
+            <button class="toggle-status btn card-action" data-id="${book.id}">
+                Change Status
+            </button>
         `;
 
         container.appendChild(newCard);
@@ -91,6 +62,17 @@ function removeBook(id) {
 
     if (index !== -1) {
         myLibrary.splice(index, 1);
+        displayBooks();
+    }
+}
+
+function toggleBookStatus(id) {
+    const book = myLibrary.find(function (book) {
+        return book.id === id;
+    });
+
+    if (book) {
+        book.toggleStatus();
         displayBooks();
     }
 }
@@ -131,6 +113,19 @@ container.addEventListener('click', function (e) {
         const id = e.target.dataset.id;
         removeBook(id);
     }
+
+    if (e.target.classList.contains('toggle-status')) {
+        const id = e.target.dataset.id;
+        toggleBookStatus(id);
+    }
 });
+
+/* Starter books */
+addBookToLibrary('Dune', 'Frank Herbert', 'Science Fiction', 412, 'Finished');
+addBookToLibrary('The Lord of the Rings', 'J.R.R. Tolkien', 'Fantasy', 1178, 'Reading');
+addBookToLibrary('Mistborn', 'Brandon Sanderson', 'Fantasy', 541, 'To Read');
+addBookToLibrary('The Road', 'Cormac McCarthy', 'Post-Apocalyptic Fiction', 287, 'Finished');
+addBookToLibrary('The Little Prince', 'Antoine de Saint-Exupery', 'Fable', 96, 'Finished');
+addBookToLibrary('Hyperion', 'Dan Simmons', 'Science Fiction', 482, 'To Read');
 
 displayBooks();
