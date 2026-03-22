@@ -27,12 +27,12 @@ class Library {
     }
 
     removeBook(id) {
-        const index = this.#books.findIndex(function(book) { return book.id === id; });
+        const index = this.#books.findIndex(function (book) { return book.id === id; });
         if (index !== -1) this.#books.splice(index, 1);
     }
 
     toggleBookStatus(id) {
-        const book = this.#books.find(function(book) { return book.id === id; });
+        const book = this.#books.find(function (book) { return book.id === id; });
         book?.toggleStatus();
     }
 
@@ -56,32 +56,53 @@ const closeDialogBtn = document.getElementById('close-dialog');
 
 function displayBooks() {
     container.innerHTML = '';
-    library.getBooks().forEach(function(book) {
+    library.getBooks().forEach(function (book) {
         const newCard = document.createElement('article');
         newCard.classList.add('current-card');
-        newCard.innerHTML = `
-            <button class="card-close" aria-label="Close card" data-id="${book.id}">&times;</button>
-            <h3>${book.title}</h3>
-            <p><strong>Author:</strong> ${book.author}</p>
-            <p><strong>Genre:</strong> ${book.genre}</p>
-            <p><strong>Pages:</strong> ${book.pages}</p>
-            <p><strong>Status:</strong> ${book.status}</p>
-            <button class="toggle-status btn card-action" data-id="${book.id}">
-                Change Status
-            </button>
-        `;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.classList.add('card-close');
+        closeBtn.setAttribute('aria-label', 'Close card');
+        closeBtn.dataset.id = book.id;
+        closeBtn.textContent = '\u00D7';
+
+        const title = document.createElement('h3');
+        title.textContent = book.title;
+
+        const author = document.createElement('p');
+        author.innerHTML = '<strong>Author:</strong> ';
+        author.append(book.author);
+
+        const genre = document.createElement('p');
+        genre.innerHTML = '<strong>Genre:</strong> ';
+        genre.append(book.genre);
+
+        const pages = document.createElement('p');
+        pages.innerHTML = '<strong>Pages:</strong> ';
+        pages.append(String(book.pages));
+
+        const status = document.createElement('p');
+        status.innerHTML = '<strong>Status:</strong> ';
+        status.append(book.status);
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.classList.add('toggle-status', 'btn', 'card-action');
+        toggleBtn.dataset.id = book.id;
+        toggleBtn.textContent = 'Change Status';
+
+        newCard.append(closeBtn, title, author, genre, pages, status, toggleBtn);
         container.appendChild(newCard);
     });
 }
 
-button1.addEventListener('click', function(e) {
+button1.addEventListener('click', function (e) {
     e.preventDefault();
     dialog.showModal();
 });
 
-closeDialogBtn.addEventListener('click', function() { dialog.close(); });
+closeDialogBtn.addEventListener('click', function () { dialog.close(); });
 
-bookForm.addEventListener('submit', function(event) {
+bookForm.addEventListener('submit', function (event) {
     event.preventDefault();
     library.addBook(
         document.getElementById('title').value,
@@ -95,13 +116,13 @@ bookForm.addEventListener('submit', function(event) {
     dialog.close();
 });
 
-button2.addEventListener('click', function(e) {
+button2.addEventListener('click', function (e) {
     e.preventDefault();
     library.clear();
     displayBooks();
 });
 
-container.addEventListener('click', function(e) {
+container.addEventListener('click', function (e) {
     const id = e.target.dataset.id;
     if (e.target.classList.contains('card-close')) {
         library.removeBook(id);
